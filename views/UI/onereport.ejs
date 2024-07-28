@@ -1,0 +1,19 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <div class="content">
+        <div>
+            <div class="card">
+                <p> <%= myReport.name %> </p>
+                <p> <%= myReport.description %> </p>
+                <p> <%= myReport.incomeAmount %> </p>
+                <form method="get" action="/newexpenses/<%= myReport._id %>">
+                    <button>add expenses</button>
+                </form>
+                <form method="post" action="/reports/<%= myReport._id %>?_method=DELETE">
+                    <button>delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

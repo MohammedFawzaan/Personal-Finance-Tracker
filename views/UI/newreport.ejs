@@ -1,0 +1,22 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <div class="content">
+        <div class="container-newreport">
+            <h1>Create Report</h1>
+            <form method="post" action="/reports">
+                
+                <label class="lbl" for="name"> Name of Your Report </label>
+                <input class="inp-1" id="name" name="name" type="text" placeholder=" Report Name ">
+
+                <label class="lbl" for="incomeAmount"> Income </label>
+                <input class="inp-1" id="incomeAmount" name="incomeAmount" type="text" placeholder=" Income ">
+
+                <label class="lbl" for="description">  Description </label>
+                <input class="inp-1" id="description" name="description" type="text" placeholder=" Report description ">
+
+                <button>Add</button>
+            </form>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,17 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <div class="content">
+        <h2>Add New Expenses</h2>
+        <form method="post" action="/reports/<%= report._id %>/expenses">
+
+            <label class="lbl" for="category"> Category Of Expense </label>
+            <input class="inp-1" id="category" name="category" type="text" placeholder=" Expense category ">
+
+            <label class="lbl" for="amount"> Amount </label>
+            <input class="inp-1" id="amount" name="amount" type="text" placeholder=" amount ">
+
+            <button>Add Expense</button>
+        </form>
+    </div>
+</body>

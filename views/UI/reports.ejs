@@ -1,0 +1,18 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <div class="content">
+        <h1>All Your Reports</h1>
+        <div>
+            <% for(let report of reports) { %>
+                <a href="/reports/<%= report._id %>">
+                    <div class="card">
+                        <p> <%= report.name %> </p>
+                        <p> <%= report.description %> </p>
+                        <p> <%= report.incomeAmount %> </p>
+                    </div>
+                </a>
+            <% } %>
+        </div>
+    </div>
+</body>
