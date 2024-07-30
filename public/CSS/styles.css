@@ -1,28 +1,33 @@
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden; /* Prevent horizontal overflow */
+    /* Prevent horizontal overflow */
+    overflow-x: hidden; 
     background-color: azure;
 }
 
 /* For every content */
-
 .content {
+    display: flex;
+    flex-direction: column;
     margin-left: 250px; /* Same as sidebar width */
-    padding: 20px;
+    padding: 1rem;
     width: calc(100% - 250px);
     box-sizing: border-box; /* Include padding in width calculation */
 }
 
+.main-heading {
+    margin-top: 280px;
+}
+
 /* Main */
-.content h1 {
-    display: inline-block;
+h1 {
     text-align: center;
-    font-size: 30px;
-    font-weight: 900;
-    line-height: normal;
+    color: #333;
+    margin-bottom: 3rem;
+    font-size: 36px; /* Larger font size */
+    font-weight: 900; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 2px; /* Spacing between letters */
 }
 
 /* Sidebar */
@@ -108,45 +113,6 @@ body {
     border-radius: 5px;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .sidebar {
-        transform: translateX(-100%); /* Hide sidebar off-screen */
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        overflow: hidden; /* Prevent sidebar overflow */
-    }
-
-    .sidebar.open {
-        transform: translateX(0); /* Show sidebar */
-    }
-
-    .content {
-        margin-left: 0;
-        width: 100%;
-        padding: 20px;
-        box-sizing: border-box; /* Include padding in width calculation */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .content h1 {
-        font-size: 24px; /* Smaller heading size for mobile */
-        margin: 0; /* Remove default margin */
-    }
-
-    .burger-menu {
-        display: block; /* Show burger menu button */
-    }
-
-    .burger-menu #burger-button {
-        font-size: 20px; /* Adjust button size */
-        padding: 8px; /* Adjust padding */
-    }
-}
-
 /* Sign up and Login */
 
 .main-form-container {
@@ -220,6 +186,302 @@ body {
     background-color: #0056b3;
 }
 
+/* All reports Styling */
+
+.reports-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    flex: 1 1 300px; /* Responsive card width */
+    max-width: 300px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.report-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #358fe8;
+}
+
+.report-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.report-income {
+    font-size: 16px;
+    color: #2ecc71;
+}
+/* Report details container styling */
+.report-details {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Balance amount styling */
+.balance-amount {
+    font-size: 20px;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Report description styling */
+.report-description {
+    font-size: 20px;
+    text-transform: capitalize;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Add expenses button styling */
+.btn-add-expenses {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #4a90e2;
+    color: #fff;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+}
+
+.btn-add-expenses:hover {
+    background-color: #357abd;
+    transform: translateY(-1px); /* Slight lift effect */
+}
+
+.btn-add-expenses:active {
+    background-color: #2c5d9f;
+    transform: translateY(0); /* Reset lift effect on click */
+}
+
+/* Delete report button styling */
+.btn-delete-report {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #e94e77;
+    color: #fff;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+}
+
+.btn-delete-report:hover {
+    background-color: #d43f6b;
+    transform: translateY(-1px); /* Slight lift effect */
+}
+
+.btn-delete-report:active {
+    background-color: #c32e5a;
+    transform: translateY(0); /* Reset lift effect on click */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+
+    .sidebar {
+        transform: translateX(-100%); /* Hide sidebar off-screen */
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        overflow: hidden; /* Prevent sidebar overflow */
+    }
+
+    .sidebar.open {
+        transform: translateX(0); /* Show sidebar */
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box; /* Include padding in width calculation */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .main-heading {
+        margin-top: 200px;
+    }
+
+    h1 {
+        font-size: x-large; /* Smaller heading size for mobile */
+        margin: 1.7em; /* Remove default margin */
+    }
+
+    .burger-menu {
+        display: block; /* Show burger menu button */
+    }
+
+    .burger-menu #burger-button {
+        font-size: 20px; /* Adjust button size */
+        padding: 8px; /* Adjust padding */
+    }
+
+    .content {
+        padding-left: 0; /* Remove padding for smaller screens */
+        width: 100%;
+    }
+
+    .card-link {
+        flex: 1 1 100%; /* Full width for smaller screens */
+    }
+
+    .report-details {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+
+    .btn-add-expenses, .btn-delete-report {
+        width: 100%; /* Full width buttons for smaller screens */
+        margin: 5px 0; /* Adjust margins for smaller screens */
+    }
+}
+
+/* Create Report  */
+
+.report-form-container {
+    display: flex;
+    justify-content: center;
+    height: 80vh; /* Vertically center the form */
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.report-form {
+    width: 100%;
+    margin: 1rem;
+}
+
+.report-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.report-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.report-input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.btn-add-report {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-report:hover {
+    background-color: #218838;
+}
+/* New Expense page */
+/* Add New Expenses Page */
+
+.expenses-form-container {
+    display: flex;
+    justify-content: center;
+    height: 80vh; /* Vertically center the form */
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.expenses-form {
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.expense-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.expense-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.expense-input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.btn-add-expense {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #28a745;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-expense:hover {
+    background-color: #218838;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
     .form-container {
@@ -229,5 +491,74 @@ body {
     .inp, .btn {
         font-size: 14px;
     }
+    
+    .report-form-container {
+        padding: 1rem;
+    }
+
+    .report-input, .btn-add-report {
+        font-size: 14px;
+    }
+
+    .expenses-form-container {
+        padding: 1rem;
+    }
+
+    .expense-input, .btn-add-expense {
+        font-size: 14px;
+    }
 }
 
+/* Expenses Styling */
+
+.expenses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.expense-item {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.expense-item:hover {
+    transform: translateY(-5px);
+}
+
+.expense-amount {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.expense-category {
+    font-size: 16px;
+    color: #333;
+}
+
+.btn-delete-expense {
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #e94e77;
+    color: #fff;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+}
+
+.btn-delete-expense:hover {
+    background-color: #d43f6b;
+    transform: translateY(-1px); /* Slight lift effect */
+}
+
+.btn-delete-expense:active {
+    background-color: #c32e5a;
+    transform: translateY(0); /* Reset lift effect on click */
+}

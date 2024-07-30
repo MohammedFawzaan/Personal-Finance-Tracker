@@ -2,18 +2,28 @@
 
 <body>
     <div class="content">
-        <div>
-            <div class="card">
-                <p> <%= myReport.name %> </p>
-                <p> <%= myReport.description %> </p>
-                <p> <%= myReport.incomeAmount %> </p>
-                <form method="get" action="/newexpenses/<%= myReport._id %>">
-                    <button>add expenses</button>
-                </form>
-                <form method="post" action="/reports/<%= myReport._id %>?_method=DELETE">
-                    <button>delete</button>
-                </form>
-            </div>
+        <h1 class="report-title"><%= myReport.name %> Finance Report</h1>
+        <div class="report-details">
+            <h3 class="balance-amount">Balance Amount: <%= myReport.incomeAmount %></h3>
+            <h3 class="report-description"><%= myReport.description %></h3>
+            <form class="add-expenses-form" method="get" action="/newexpenses/<%= myReport._id %>">
+                <button class="btn-add-expenses">Add Expenses</button>
+            </form>
+            <!-- Expenses List -->
+            <div class="expenses-list">
+                <% for(let exp of myReport.expenses) { %>
+                    <div class="expense-item">
+                        <h4 class="expense-category"><%= exp.category %></h4>
+                        <h4 class="expense-amount"><%= exp.amount %>/-</h4>
+                        <form action="">
+                            <button class="btn-delete-expense" >Delete</button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>    
+            <form class="delete-report-form" method="post" action="/reports/<%= myReport._id %>?_method=DELETE">
+                <button class="btn-delete-report">Delete Report</button>
+            </form>
         </div>
     </div>
 </body>

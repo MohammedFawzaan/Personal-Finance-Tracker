@@ -7,7 +7,7 @@ const Expenses = require('../model/expensesModel');
 // Get /newexpenses
 router.get('/newexpenses/:id', async(req, res) => {
     let {id} = req.params;
-    let report = await Reports.findById(id);
+    let report = await Reports.findById(id).populate('expenses');
     res.render('UI/newexpenses.ejs', {report});
 });
 

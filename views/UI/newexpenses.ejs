@@ -2,16 +2,18 @@
 
 <body>
     <div class="content">
-        <h2>Add New Expenses</h2>
-        <form method="post" action="/reports/<%= report._id %>/expenses">
+        <h1>Add New Expenses</h1>
+        <div class="expenses-form-container">
+            <form class="expenses-form" method="post" action="/reports/<%= report._id %>/expenses">
 
-            <label class="lbl" for="category"> Category Of Expense </label>
-            <input class="inp-1" id="category" name="category" type="text" placeholder=" Expense category ">
+                <label class="expense-label" for="expenseCategory">Category Of Expense</label>
+                <input class="expense-input" id="expenseCategory" name="category" type="text" placeholder="Expense category">
 
-            <label class="lbl" for="amount"> Amount </label>
-            <input class="inp-1" id="amount" name="amount" type="text" placeholder=" amount ">
+                <label class="expense-label" for="expenseAmount">Amount</label>
+                <input class="expense-input" id="expenseAmount" name="amount" type="text" placeholder="Amount">
 
-            <button>Add Expense</button>
-        </form>
+                <button class="btn-add-expense">Add Expense</button>
+            </form>
+        </div>
     </div>
 </body>

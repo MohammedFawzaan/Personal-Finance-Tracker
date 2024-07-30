@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const Expenses = require('./expensesModel');
-
 const schema = mongoose.Schema;
 
 const reportsSchema = new schema({
@@ -22,7 +20,7 @@ const reportsSchema = new schema({
     expenses: [
         {
             type: Schema.Types.ObjectId,
-            refs: "Expenses"
+            ref: require('./expensesModel')
         }
     ],
     createdAt :{

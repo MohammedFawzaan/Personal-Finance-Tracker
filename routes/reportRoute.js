@@ -20,7 +20,8 @@ router.get('/newreport', (req, res) => {
 // /reports/:id
 router.get('/reports/:id', async(req, res) => {
     const {id} = req.params;
-    let myReport = await Reports.findById(id);
+    let myReport = await Reports.findById(id)
+    .populate({ path: "expenses", options: { strictPopulate: false } });
     res.render('UI/onereport', {myReport});
 });
 

@@ -2,20 +2,20 @@
 
 <body>
     <div class="content">
-        <div class="container-newreport">
-            <h1>Create Report</h1>
-            <form method="post" action="/reports">
+        <h1>Create Report</h1>
+        <div class="report-form-container">
+            <form class="report-form" method="post" action="/reports">
                 
-                <label class="lbl" for="name"> Name of Your Report </label>
-                <input class="inp-1" id="name" name="name" type="text" placeholder=" Report Name ">
+                <label class="report-label" for="reportName"> Name of Your Report </label>
+                <input class="report-input" id="reportName" name="name" type="text" placeholder="Report Name">
 
-                <label class="lbl" for="incomeAmount"> Income </label>
-                <input class="inp-1" id="incomeAmount" name="incomeAmount" type="text" placeholder=" Income ">
+                <label class="report-label" for="reportIncome"> Income </label>
+                <input class="report-input" id="reportIncome" name="incomeAmount" type="text" placeholder="Income">
 
-                <label class="lbl" for="description">  Description </label>
-                <input class="inp-1" id="description" name="description" type="text" placeholder=" Report description ">
+                <label class="report-label" for="reportDescription"> Description </label>
+                <input class="report-input" id="reportDescription" name="description" type="text" placeholder="Report Description">
 
-                <button>Add</button>
+                <button class="btn-add-report">Add</button>
             </form>
         </div>
     </div>
