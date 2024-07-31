@@ -4,7 +4,7 @@
     <div class="content">
         <h1 class="report-title"><%= myReport.name %> Finance Report</h1>
         <div class="report-details">
-            <h3 class="balance-amount">Balance Amount: <%= myReport.incomeAmount %></h3>
+            <h3 class="balance-amount">Income Amount: <%= myReport.incomeAmount %></h3>
             <h3 class="report-description"><%= myReport.description %></h3>
             <form class="add-expenses-form" method="get" action="/newexpenses/<%= myReport._id %>">
                 <button class="btn-add-expenses">Add Expenses</button>
@@ -13,14 +13,17 @@
             <div class="expenses-list">
                 <% for(let exp of myReport.expenses) { %>
                     <div class="expense-item">
-                        <h4 class="expense-category"><%= exp.category %></h4>
+                        <h4 class="expense-category"><pre> &#x2022;    <%= exp.category %></pre></h4>
                         <h4 class="expense-amount"><%= exp.amount %>/-</h4>
-                        <form action="">
+                        <form method="post" action="/reports/<%= myReport._id %>/expenses/<%= exp._id %>?_method=DELETE">
                             <button class="btn-delete-expense" >Delete</button>
                         </form>
                     </div>
                 <% } %>
             </div>    
+            <div>
+                <h3>Current Balance</h3>
+            </div>
             <form class="delete-report-form" method="post" action="/reports/<%= myReport._id %>?_method=DELETE">
                 <button class="btn-delete-report">Delete Report</button>
             </form>

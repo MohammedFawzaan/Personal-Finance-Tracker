@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Expenses = require('./expensesModel');
 
 const Schema = mongoose.Schema;
 
@@ -30,5 +31,12 @@ const reportsSchema = new schema({
 });
 
 const Reports = mongoose.model('Reports', reportsSchema);
+
+// middleware to delete all expenses info related to that particular report.
+reportsSchema.post('findOneAndDelete', async(reports) => {
+    if(reports) {
+        await Expenses.deleteMany({_id: {$in : reports.expenses}});
+    }
+});
 
 module.exports = Reports;

@@ -7,10 +7,10 @@
             <form class="expenses-form" method="post" action="/reports/<%= report._id %>/expenses">
 
                 <label class="expense-label" for="expenseCategory">Category Of Expense</label>
-                <input class="expense-input" id="expenseCategory" name="category" type="text" placeholder="Expense category">
+                <input class="expense-input" id="expenseCategory" name="category" type="text" placeholder="Expense category" required>
 
                 <label class="expense-label" for="expenseAmount">Amount</label>
-                <input class="expense-input" id="expenseAmount" name="amount" type="text" placeholder="Amount">
+                <input class="expense-input" id="expenseAmount" name="amount" type="text" placeholder="Amount" required>
 
                 <button class="btn-add-expense">Add Expense</button>
             </form>
