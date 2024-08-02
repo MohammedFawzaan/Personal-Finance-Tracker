@@ -562,3 +562,21 @@ h1 {
     background-color: #c32e5a;
     transform: translateY(0); /* Reset lift effect on click */
 }
+
+/* Flash message Styling */
+.flash-message {
+    margin: 0 auto;
+    background-color: #dff0d8;
+    width: 35%;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 900;
+    padding: 0.3rem;
+    border-radius: 5px;
+}
+.flash-success {
+    color: #2aaa2c;
+}
+.flash-error {
+    color: #c1403e;
+}

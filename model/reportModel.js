@@ -27,6 +27,10 @@ const reportsSchema = new schema({
     createdAt :{
         type: Date,
         default: Date.now()
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        refs: require('./userModel')
     }
 });
 

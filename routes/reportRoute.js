@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-
+const isLoggedIn = require('../middleware');
+const isOwner = require('../middleware');
 const asyncHandler = require('express-async-handler');
 
 const ExpressError = require('../utils/ExpressError')
@@ -9,20 +10,20 @@ const Reports = require('../model/reportModel');
 
 // Get All Reports 
 // Route /reports
-router.get('/reports', async(req, res) => {
+router.get('/reports', isLoggedIn, async(req, res) => {
     let reports = await Reports.find({});
     res.render("UI/reports.ejs", {reports});
 });
 
 // Get create report
 // Route /newreport
-router.get('/newreport', (req, res) => {
+router.get('/newreport', isLoggedIn, (req, res) => {
     res.render('UI/newreport.ejs');
 });
 
 // Get particular report
 // Route /reports/:id
-router.get('/reports/:id', asyncHandler(async(req, res) => {
+router.get('/reports/:id', isLoggedIn, isOwner, asyncHandler(async(req, res) => {
     const {id} = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
         throw new ExpressError(404, "Id not found");
@@ -37,7 +38,7 @@ router.get('/reports/:id', asyncHandler(async(req, res) => {
 
 // Post create report
 // Route /reports
-router.post('/reports', async (req, res) => {
+router.post('/reports', isLoggedIn, isOwner, async (req, res) => {
     let { name, incomeAmount, description} = req.body;
     // creating new Report in db
     let newReport = new Reports({
@@ -52,7 +53,7 @@ router.post('/reports', async (req, res) => {
 
 // Delete a Report
 // /reports/:id
-router.delete('/reports/:id', asyncHandler(async(req, res) => {
+router.delete('/reports/:id', isLoggedIn, isOwner, asyncHandler(async(req, res) => {
     let {id} = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
         throw new ExpressError(404, "Id not found");

@@ -2,6 +2,20 @@
 
 <body>
     <div class="content content-img">
+        <% if (success && success.length > 0) { %>
+            <div class="flash-message flash-success">
+                <% success.forEach(function(message) { %>
+                    <p><%= message %></p>
+                <% }); %>
+            </div>
+        <% } %>
+        <% if (error && error.length > 0) { %>
+            <div class="flash-message flash-error">
+                <% error.forEach(function(message) { %>
+                    <p><%= message %></p>
+                <% }); %>
+            </div>
+        <% } %>
         <h1 class="main-heading" >Personal Finance Tracker</h1>
     </div>
 </body>
