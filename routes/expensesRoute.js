@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-
 const asyncHandler = require('express-async-handler');
 
 const Reports = require('../model/reportModel');
 const Expenses = require('../model/expensesModel');
+const User = require('../model/newUserModel');
 
 // Get Expenses
 // Route /newexpenses/:id

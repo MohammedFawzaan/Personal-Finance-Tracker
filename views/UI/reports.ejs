@@ -2,7 +2,21 @@
 
 <body>
     <div class="content">
-        <h1> All Your Reports</h1>
+        <% if (success && success.length > 0) { %>
+            <div class="flash-message flash-success">
+                <% success.forEach(function(message) { %>
+                    <p><%= message %></p>
+                <% }); %>
+            </div>
+        <% } %>
+        <% if (error && error.length > 0) { %>
+            <div class="flash-message flash-error">
+                <% error.forEach(function(message) { %>
+                    <p><%= message %></p>
+                <% }); %>
+            </div>
+        <% } %>
+        <h1> My Reports</h1>
         <div class="reports-container">
             <% for(let report of reports) { %>
                 <a href="/reports/<%= report._id %>" class="card-link">

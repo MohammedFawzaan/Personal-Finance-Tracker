@@ -1,20 +1,6 @@
 <% layout("/layouts/simplelayout") %>
 
 <body>
-    <% if (success && success.length > 0) { %>
-        <div class="flash-message flash-success">
-            <% success.forEach(function(message) { %>
-                <p><%= message %></p>
-            <% }); %>
-        </div>
-    <% } %>
-    <% if (error && error.length > 0) { %>
-        <div class="flash-message flash-error">
-            <% error.forEach(function(message) { %>
-                <p><%= message %></p>
-            <% }); %>
-        </div>
-    <% } %>
     <div class="main-form-container">
         <div class="form-container">
             <h1 class="signup-heading" >Sign Up <a class="navoptions" href="/home">Home</a> </h1>

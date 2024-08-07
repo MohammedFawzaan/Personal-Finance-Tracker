@@ -12,7 +12,7 @@ const passport = require('passport');
 const localStrategy = require('passport-local');
 
 // user model require.
-const User = require('./model/userModel');
+const User = require('./model/newUserModel');
 
 // ejs, ejs-mate require
 const ejs = require('ejs');
@@ -39,6 +39,8 @@ async function main() {
     console.log("db connected");
 }
 
+//  Passport authentication
+
 // specified session Options
 const sessionOptions = session({
   secret: "MySecret",
@@ -58,15 +60,6 @@ app.use(sessionOptions);
 // connect-flash middleware
 app.use(flash());
 
-// Using Cookie
-app.get('/get', (req, res) => {
-  res.cookie('color', 'red', {signed: true});
-  res.send('done');
-});
-app.get('/verify', (req, res) => {
-  res.send(req.signedCookies);
-});
-
 // set up req.locals middleware.
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
@@ -76,18 +69,20 @@ app.use((req, res, next) => {
   next();
 });
 
-// using passport and its middlewares.
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new localStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// // using passport and its middlewares.
+// app.use(passport.initialize());
+// app.use(passport.session());
+// passport.use(new localStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 // middleware for Routes.
+
 app.use('/', require('./routes/myRoute'));
 app.use('/', require('./routes/reportRoute'));
 app.use('/', require('./routes/expensesRoute'));
-app.use('/', require('./routes/userRoute'));
+// app.use('/', require('./routes/userRoute'));
+app.use('/', require('./routes/newUser'));
 
 // if user enters wrong route enter
 app.all('*', (req, res, next) => {

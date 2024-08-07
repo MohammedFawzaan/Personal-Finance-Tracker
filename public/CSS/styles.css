@@ -7,12 +7,17 @@ body {
 
 /* For every content */
 .content {
-    display: flex;
-    flex-direction: column;
     margin-left: 250px; /* Same as sidebar width */
     padding: 1rem;
     width: calc(100% - 250px);
     box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.content-img {
+    background-image: url('/path/to/your/image.jpg'); /* Correct path to your image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .main-heading {

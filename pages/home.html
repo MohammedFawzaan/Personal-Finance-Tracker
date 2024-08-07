@@ -12,13 +12,6 @@
 <body>
     <div class="sidebar">
         <div class="profile">
-            <div class="profile-info">
-                <% if (currentUser) { %>
-                    <h3><%= owner.username %></h3>
-                <% } else { %>
-                    <h3>Guest</h3>
-                <% } %>
-            </div>
         </div>
         <div class="nav">
             <div class="navoption"><a href="/home">Home</a></div>
@@ -32,9 +25,9 @@
     <div class="burger-menu">
         <button id="burger-button">&#9776;</button>
     </div>
-    <main>
-        <%- body %>
-    </main>
+    <div class="content content-img">
+        <h1 class="main-heading">Personal Finance Tracker</h1>
+    </div>
     <script src="/JS/script.js"></script>
 </body>
 

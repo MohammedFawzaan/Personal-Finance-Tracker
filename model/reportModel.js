@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 const Expenses = require('./expensesModel');
-
 const Schema = mongoose.Schema;
 
-const schema = mongoose.Schema;
-
-const reportsSchema = new schema({
+const reportsSchema = new Schema({
+    user_id: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: require('./newUserModel'),
+    },
     name: {
         type: String,
         required: true
@@ -27,10 +29,6 @@ const reportsSchema = new schema({
     createdAt :{
         type: Date,
         default: Date.now()
-    },
-    owner: {
-        type: Schema.Types.ObjectId,
-        refs: require('./userModel')
     }
 });
 
