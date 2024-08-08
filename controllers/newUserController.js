@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const ExpressError = require('../utils/ExpressError');
+require('dotenv').config();
 
 const Signup = (req, res) => {
     res.render('UI/signup.ejs');
@@ -79,7 +80,7 @@ const Login = asyncHandler(async (req, res) => {
         res.cookie('accessToken', accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 15 * 60 * 1000
+            maxAge: 2 * 365 * 24 * 60 * 60 * 1000 // 2 years
         });
         res.redirect('/home');
     } else {

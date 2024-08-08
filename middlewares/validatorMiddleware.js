@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const validateToken = asyncHandler(async (req, res, next) => {
     let token;
@@ -13,7 +14,7 @@ const validateToken = asyncHandler(async (req, res, next) => {
 
     if (token) {
         try {
-            const decoded = jwt.verify(token, "fawzaan123");
+            const decoded = jwt.verify(token, process.env.JWT_SECRET || "fawzaan123");
             req.userAvailable = decoded.userAvailable;
             next();
         } catch (err) {

@@ -3,17 +3,25 @@ body {
     /* Prevent horizontal overflow */
     overflow-x: hidden;
     /* background: linear-gradient(135deg, #00C9FF, #92FE9D); */
-    background-color: rgb(195, 246, 246);
+    /* background-color: rgb(195, 246, 246); */
 }
 
 /* For every content */
 .content {
+    margin-left: 250px; /* Same as sidebar width */
+    padding: 1rem;
+    width: calc(100% - 250px);
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.content-img {
     margin-left: 250px;
-    /* Same as sidebar width */
     padding: 1rem;
     width: calc(100% - 250px);
     box-sizing: border-box;
-    /* Include padding in width calculation */
+    background-image: url('/assets/images.jpeg'); /* Verify the image path */
+    background-size: cover; 
+    background-position: center; 
 }
 
 .Heading {

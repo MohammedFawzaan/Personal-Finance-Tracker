@@ -36,7 +36,7 @@
                         <h4 class="expense-category"><%= exp.category %></h4>
                         <h4 class="expense-amount"><%= exp.amount %>/-</h4>
                         <form method="post" action="/reports/<%= myReport._id %>/expenses/<%= exp._id %>?_method=DELETE">
-                            <button class="btn-delete-expense" >Delete</button>
+                            <button class="btn-delete-expense">Delete</button>
                         </form>
                     </div>
                 <% } %>
