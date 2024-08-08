@@ -1,18 +1,38 @@
 <% layout("/layouts/boilerplate") %>
 
 <body>
+    <h1 class="Heading"><%= myReport.name %> Finance Report</h1>
     <div class="content">
-        <h1 class="report-title"><%= myReport.name %> Finance Report</h1>
+        <% if (success && success.length > 0) { %>
+            <div class="flash-message flash-success">
+                <% success.forEach(function(message) { %>
+                    <p><%= message %></p>
+                <% }); %>
+            </div>
+        <% } %>
+        <% if (error && error.length > 0) { %>
+            <div class="flash-message flash-error">
+                <% error.forEach(function(message) { %>
+                    <p><%= message %></p>
+                <% }); %>
+            </div>
+        <% } %>
         <div class="report-details">
-            <h3 class="balance-amount">Income Amount: <%= myReport.incomeAmount %></h3>
-            <h3 class="report-description"><%= myReport.description %></h3>
+            <div class="budget-class">
+                <h3 class="balance-amount"><%= myReport.description %> : <%= myReport.incomeAmount %>/-</h3>
+                <h3 class="balance-amount">Current Balance: <%= myReport.currentBalance %>/-</h3>
+            </div>
+            <h3 class="balance-amount"> Report Created At: <%= myReport.createdAt.toString().slice(0, 15) %> </h3>
             <form class="add-expenses-form" method="get" action="/newexpenses/<%= myReport._id %>">
                 <button class="btn-add-expenses">Add Expenses</button>
             </form>
             <!-- Expenses List -->
+            <div class="expense-heading"><p>Date</p><p>Time</p><p>Type</p><p>Price</p><p></p></div>
             <div class="expenses-list">
                 <% for(let exp of myReport.expenses) { %>
                     <div class="expense-item">
+                        <h4 class="expense-category" > <%= exp.createdAt.toString().slice(4,11) %> </h4>
+                        <h4 class="expense-category" > <%= exp.createdAt.toString().slice(15, 21) %> </h4>
                         <h4 class="expense-category"><%= exp.category %></h4>
                         <h4 class="expense-amount"><%= exp.amount %>/-</h4>
                         <form method="post" action="/reports/<%= myReport._id %>/expenses/<%= exp._id %>?_method=DELETE">
@@ -20,9 +40,6 @@
                         </form>
                     </div>
                 <% } %>
-            </div>    
-            <div>
-                <h3>Current Balance</h3>
             </div>
             <form class="delete-report-form" method="post" action="/reports/<%= myReport._id %>?_method=DELETE">
                 <button class="btn-delete-report">Delete Report</button>

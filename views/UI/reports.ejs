@@ -1,6 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 
 <body>
+    <h1 class="Heading" > My Reports</h1>
     <div class="content">
         <% if (success && success.length > 0) { %>
             <div class="flash-message flash-success">
@@ -16,14 +17,14 @@
                 <% }); %>
             </div>
         <% } %>
-        <h1> My Reports</h1>
         <div class="reports-container">
             <% for(let report of reports) { %>
                 <a href="/reports/<%= report._id %>" class="card-link">
                     <div class="card">
                         <p class="report-name"><%= report.name %></p>
                         <p class="report-description"><%= report.description %></p>
-                        <p class="report-income">Income: $<%= report.incomeAmount %></p>
+                        <p class="report-income">Income: <%= report.incomeAmount %>rs</p>
+                        <!-- <p class="report-date"> Date: <%= report.createdAt.toString().slice(0, 15) %> </p> -->
                     </div>
                 </a>
             <% } %>

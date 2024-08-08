@@ -30,6 +30,23 @@ const Register = asyncHandler(async (req, res) => {
     await newUser.save();
 
     if (newUser) {
+        // Log in the user directly after successful signup
+        const accessToken = jwt.sign(
+            {
+                userAvailable: {
+                    username: newUser.username,
+                    email: newUser.email,
+                    id: newUser.id
+                }
+            },
+            process.env.JWT_SECRET || "fawzaan123",
+            { expiresIn: "15m" }
+        );
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 15 * 60 * 1000
+        });
         res.redirect('/home');
     } else {
         res.redirect('/signup');
@@ -46,7 +63,7 @@ const Login = asyncHandler(async (req, res) => {
         throw new ExpressError(400, 'Email or password incorrect');
     }
     const userAvailable = await User.findOne({ email });
-    
+
     if (userAvailable && (await bcrypt.compare(password, userAvailable.password))) {
         const accessToken = jwt.sign(
             {
@@ -56,12 +73,18 @@ const Login = asyncHandler(async (req, res) => {
                     id: userAvailable.id
                 }
             }, 
-            "fawzaan123",
+            process.env.JWT_SECRET || "fawzaan123",
             { expiresIn: "15m" }
         );
-        res.json({accessToken }); // Send the token in the JSON response
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 15 * 60 * 1000
+        });
+        res.redirect('/home');
     } else {
-        throw new ExpressError(401, "Details Not Valid");
+        req.flash("error", "Email or Password incorrect");
+        res.redirect('/login');
     }
 });
 
@@ -69,4 +92,13 @@ const Current = asyncHandler(async (req, res) => {
     res.json(req.userAvailable);
 });
 
-module.exports = { LoginGet, Signup, Register, Login, Current };
+const Logout = (req, res) => {
+    res.clearCookie('accessToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production'
+    });
+    req.flash("error", "You are Logged Out");
+    res.redirect('/login'); // Redirect to the login page after logout
+};
+
+module.exports = { LoginGet, Signup, Register, Login, Current, Logout };

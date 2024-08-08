@@ -8,14 +8,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 
-const passport = require('passport');
-const localStrategy = require('passport-local');
-
-// user model require.
-const User = require('./model/newUserModel');
-
 // ejs, ejs-mate require
-const ejs = require('ejs');
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const ExpressError = require('./utils/ExpressError');
@@ -38,8 +31,6 @@ async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/FinanceApp');
     console.log("db connected");
 }
-
-//  Passport authentication
 
 // specified session Options
 const sessionOptions = session({
@@ -64,25 +55,15 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  // current User
   res.locals.currentUser = req.user;
   next();
 });
 
-// // using passport and its middlewares.
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new localStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
-
 // middleware for Routes.
-
 app.use('/', require('./routes/myRoute'));
 app.use('/', require('./routes/reportRoute'));
 app.use('/', require('./routes/expensesRoute'));
-// app.use('/', require('./routes/userRoute'));
-app.use('/', require('./routes/newUser'));
+app.use('/', require('./routes/newUserRoute'));
 
 // if user enters wrong route enter
 app.all('*', (req, res, next) => {

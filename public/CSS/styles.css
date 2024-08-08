@@ -1,23 +1,24 @@
 body {
     font-family: Arial, sans-serif;
     /* Prevent horizontal overflow */
-    overflow-x: hidden; 
-    background-color: azure;
+    overflow-x: hidden;
+    /* background: linear-gradient(135deg, #00C9FF, #92FE9D); */
+    background-color: rgb(195, 246, 246);
 }
 
 /* For every content */
 .content {
-    margin-left: 250px; /* Same as sidebar width */
+    margin-left: 250px;
+    /* Same as sidebar width */
     padding: 1rem;
     width: calc(100% - 250px);
-    box-sizing: border-box; /* Include padding in width calculation */
+    box-sizing: border-box;
+    /* Include padding in width calculation */
 }
 
-.content-img {
-    background-image: url('/path/to/your/image.jpg'); /* Correct path to your image */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.Heading {
+    margin-top: 65px;
+    margin-left: 250px;
 }
 
 .main-heading {
@@ -29,10 +30,14 @@ h1 {
     text-align: center;
     color: #333;
     margin-bottom: 3rem;
-    font-size: 36px; /* Larger font size */
-    font-weight: 900; /* Bold text */
-    text-transform: uppercase; /* Uppercase text */
-    letter-spacing: 2px; /* Spacing between letters */
+    font-size: 36px;
+    /* Larger font size */
+    font-weight: 900;
+    /* Bold text */
+    text-transform: uppercase;
+    /* Uppercase text */
+    letter-spacing: 2px;
+    /* Spacing between letters */
 }
 
 /* Sidebar */
@@ -41,12 +46,12 @@ h1 {
     background-color: #358fe8;
     color: #ecf0f1;
     height: 100vh;
-    padding-top: 20px;
+    padding-top: 2.2rem;
     position: fixed;
     top: 0;
     left: 0;
-    transition: transform 0.3s ease; /* Smooth transition for sidebar toggle */
-    overflow: auto; /* Allow scrolling within sidebar if needed */
+    transition: transform 0.3s ease;
+    /* Smooth transition for sidebar toggle */
 }
 
 .profile-info {
@@ -83,7 +88,7 @@ h1 {
 
 .navoption {
     width: 100%;
-    padding: 15px 20px;
+    padding: 2.3rem 0rem;
     text-align: center;
     font-size: larger;
     font-weight: 900;
@@ -92,6 +97,7 @@ h1 {
 .navoption a {
     color: #ecf0f1;
     text-decoration: none;
+    font-size: x-large;
     display: block;
 }
 
@@ -101,15 +107,18 @@ h1 {
 
 /* Burger Menu */
 .burger-menu {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     position: fixed;
     top: 10px;
-    right: 10px; /* Align to the right of the screen */
+    right: 10px;
+    /* Align to the right of the screen */
     z-index: 1000;
 }
 
 .burger-menu #burger-button {
-    font-size: 24px; /* Smaller size for mobile */
+    font-size: 24px;
+    /* Smaller size for mobile */
     background: #358fe8;
     color: #ecf0f1;
     border: none;
@@ -124,7 +133,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 85vh;
 }
 
 .form-container {
@@ -152,9 +161,9 @@ h1 {
 .lbl {
     display: block;
     margin-bottom: 5px;
-    color: #666;
-    font-size: 14px;
-    font-weight: 500;
+    color: rgb(50, 144, 239);
+    font-size: larger;
+    font-weight: 700;
 }
 
 .inp {
@@ -203,7 +212,8 @@ h1 {
 .card-link {
     text-decoration: none;
     color: inherit;
-    flex: 1 1 300px; /* Responsive card width */
+    flex: 1 1 300px;
+    /* Responsive card width */
     max-width: 300px;
 }
 
@@ -220,22 +230,29 @@ h1 {
 }
 
 .report-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-size: xx-large;
+    font-weight: 700;
     color: #358fe8;
 }
 
 .report-description {
-    font-size: 14px;
+    font-size: larger;
     color: #666;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
+.report-date {
+    font-size: large;
+    font-weight: 600;
+}
+
 .report-income {
-    font-size: 16px;
+    font-size: x-large;
+    font-weight: 900;
     color: #2ecc71;
 }
+
 /* Report details container styling */
 .report-details {
     background: #ffffff;
@@ -245,14 +262,17 @@ h1 {
     width: 100%;
     max-width: 600px;
     text-align: center;
-    margin: 0 auto; /* Center the container horizontally */
+    margin: 0 auto;
+    /* Center the container horizontally */
 }
 
 /* Balance amount styling */
 .balance-amount {
-    font-size: 20px;
-    color: #555;
-    margin: 10px 0;
+    font-size:x-large;
+    font-weight: 900;
+    color: #2e2c2c;
+    margin: 1rem 2rem;
+
 }
 
 /* Report description styling */
@@ -274,17 +294,20 @@ h1 {
     background-color: #4a90e2;
     color: #fff;
     margin: 10px;
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Smooth transition effects */
 }
 
 .btn-add-expenses:hover {
     background-color: #357abd;
-    transform: translateY(-1px); /* Slight lift effect */
+    transform: translateY(-1px);
+    /* Slight lift effect */
 }
 
 .btn-add-expenses:active {
     background-color: #2c5d9f;
-    transform: translateY(0); /* Reset lift effect on click */
+    transform: translateY(0);
+    /* Reset lift effect on click */
 }
 
 /* Delete report button styling */
@@ -298,78 +321,96 @@ h1 {
     background-color: #e94e77;
     color: #fff;
     margin: 10px;
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Smooth transition effects */
 }
 
 .btn-delete-report:hover {
     background-color: #d43f6b;
-    transform: translateY(-1px); /* Slight lift effect */
+    transform: translateY(-1px);
+    /* Slight lift effect */
 }
 
 .btn-delete-report:active {
     background-color: #c32e5a;
-    transform: translateY(0); /* Reset lift effect on click */
+    transform: translateY(0);
+    /* Reset lift effect on click */
 }
 
 /* Responsive design adjustments */
 @media (max-width: 768px) {
 
     .sidebar {
-        transform: translateX(-100%); /* Hide sidebar off-screen */
+        transform: translateX(-100%);
+        /* Hide sidebar off-screen */
         width: 100%;
         height: 100%;
         position: fixed;
-        overflow: hidden; /* Prevent sidebar overflow */
+        overflow: hidden;
+        /* Prevent sidebar overflow */
     }
 
     .sidebar.open {
-        transform: translateX(0); /* Show sidebar */
+        transform: translateX(0);
+        width: 40%;
+        /* Show sidebar */
     }
 
     .content {
-        margin-left: 0;
+        margin: 0 auto; 
         width: 100%;
-        padding: 20px;
-        box-sizing: border-box; /* Include padding in width calculation */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        padding: 1.5rem;
+        box-sizing: border-box;
     }
 
     .main-heading {
-        margin-top: 200px;
+        font-size: x-large;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    h1 {
-        font-size: x-large; /* Smaller heading size for mobile */
-        margin: 1.7em; /* Remove default margin */
+    .Heading {
+        margin-top: 100px;
+        margin-left: auto;
+        font-size: xx-large;
+        text-align: center;
     }
 
     .burger-menu {
-        display: block; /* Show burger menu button */
+        display: block;
+        /* Show burger menu button */
     }
 
     .burger-menu #burger-button {
-        font-size: 20px; /* Adjust button size */
-        padding: 8px; /* Adjust padding */
+        font-size: 20px;
+        /* Adjust button size */
+        padding: 8px;
+        /* Adjust padding */
     }
 
     .content {
-        padding-left: 0; /* Remove padding for smaller screens */
+        padding-left: 0;
+        /* Remove padding for smaller screens */
         width: 100%;
     }
 
     .card-link {
-        flex: 1 1 100%; /* Full width for smaller screens */
+        flex: 1 1 100%;
+        /* Full width for smaller screens */
     }
 
     .report-details {
-        width: 90%; /* Adjust width for smaller screens */
+        width: 90%;
+        /* Adjust width for smaller screens */
     }
 
-    .btn-add-expenses, .btn-delete-report {
-        width: 100%; /* Full width buttons for smaller screens */
-        margin: 5px 0; /* Adjust margins for smaller screens */
+    .btn-add-expenses,
+    .btn-delete-report {
+        width: 100%;
+        /* Full width buttons for smaller screens */
+        margin: 5px 0;
+        /* Adjust margins for smaller screens */
     }
 }
 
@@ -378,10 +419,12 @@ h1 {
 .report-form-container {
     display: flex;
     justify-content: center;
-    height: 80vh; /* Vertically center the form */
+    height: 80vh;
+    /* Vertically center the form */
     padding: 2rem;
     max-width: 800px;
-    margin: 0 auto; /* Center horizontally */
+    margin: 0 auto;
+    /* Center horizontally */
 }
 
 .report-form {
@@ -413,6 +456,13 @@ h1 {
     outline: none;
 }
 
+.budget-class {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.5rem;
+    justify-content: center;
+}
+
 .btn-add-report {
     width: 100%;
     padding: 0.75rem;
@@ -429,16 +479,19 @@ h1 {
 .btn-add-report:hover {
     background-color: #218838;
 }
+
 /* New Expense page */
 /* Add New Expenses Page */
 
 .expenses-form-container {
     display: flex;
     justify-content: center;
-    height: 80vh; /* Vertically center the form */
+    height: 80vh;
+    /* Vertically center the form */
     padding: 2rem;
     max-width: 800px;
-    margin: 0 auto; /* Center horizontally */
+    margin: 0 auto;
+    /* Center horizontally */
 }
 
 .expenses-form {
@@ -493,15 +546,17 @@ h1 {
         padding: 20px;
     }
 
-    .inp, .btn {
+    .inp,
+    .btn {
         font-size: 14px;
     }
-    
+
     .report-form-container {
         padding: 1rem;
     }
 
-    .report-input, .btn-add-report {
+    .report-input,
+    .btn-add-report {
         font-size: 14px;
     }
 
@@ -509,7 +564,8 @@ h1 {
         padding: 1rem;
     }
 
-    .expense-input, .btn-add-expense {
+    .expense-input,
+    .btn-add-expense {
         font-size: 14px;
     }
 }
@@ -531,6 +587,15 @@ h1 {
     align-items: center;
     transition: transform 0.2s;
     cursor: pointer;
+}
+
+.expense-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 900;
+    font-size: x-large;
 }
 
 .expense-item:hover {
@@ -555,20 +620,49 @@ h1 {
     cursor: pointer;
     background-color: #e94e77;
     color: #fff;
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.3s;
+    position: relative;
+}
+
+@media (max-width: 768px) { /* Adjust the width as needed for your mobile breakpoint */
+    .btn-delete-expense {
+        padding: 0.8rem;
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 0.4rem;
+        color: transparent; /* Hide the original text */
+    }
+
+    .btn-delete-expense::before {
+        content: "\2716"; /* Unicode for the cross mark */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff; /* Ensure the cross mark is white */
+        font-size: 1.5rem; /* Increase size for visibility */
+        visibility: visible; /* Ensure the cross mark is visible */
+    }
 }
 
 .btn-delete-expense:hover {
     background-color: #d43f6b;
-    transform: translateY(-1px); /* Slight lift effect */
+    transform: translateY(-1px);
+    /* Slight lift effect */
 }
 
 .btn-delete-expense:active {
     background-color: #c32e5a;
-    transform: translateY(0); /* Reset lift effect on click */
+    transform: translateY(0);
+    /* Reset lift effect on click */
 }
 
 /* Flash message Styling */
+
 .flash-message {
     margin: 0 auto;
     background-color: #dff0d8;
@@ -579,9 +673,26 @@ h1 {
     padding: 0.3rem;
     border-radius: 5px;
 }
+
 .flash-success {
     color: #2aaa2c;
 }
+
 .flash-error {
     color: #c1403e;
+}
+
+/* Other styles */
+
+.errorHeading {
+    margin: 0 auto;
+    margin-top: 100px;
+    font-weight: bolder;
+}
+
+.homeTag {
+    text-decoration: none;
+    color: black;
+    margin-left: 1.3rem;
+    font-size: x-large;
 }

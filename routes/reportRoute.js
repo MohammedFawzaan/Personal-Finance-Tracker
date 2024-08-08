@@ -50,7 +50,8 @@ router.post('/reports', validateToken, async (req, res) => {
         user_id: req.userAvailable.id,
         name: name,
         incomeAmount: incomeAmount,
-        description: description
+        description: description,
+        currentBalance: incomeAmount
     }); 
     await newReport.save();
     // req.flash("success", "New Report Created");
@@ -59,14 +60,17 @@ router.post('/reports', validateToken, async (req, res) => {
 
 // Delete a Report
 // /reports/:id
-router.delete('/reports/:id', validateToken, asyncHandler(async(req, res) => {
-    let {id} = req.params;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+router.delete('/reports/:id', validateToken, asyncHandler(async (req, res) => {
+    let { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) 
         throw new ExpressError(404, "Id not found");
-    }
-    if(Reports.user_id.toString() !== req.userAvailable.id) {
-        throw new ExpressError(403, "User dont have permission to update other user contact");
-    }
+    
+    let report = await Reports.findById(id);
+    if (!report) 
+        throw new ExpressError(404, "Report not found");
+    if (report.user_id.toString() !== req.userAvailable.id)
+        throw new ExpressError(403, "User does not have permission to delete this report");
+
     await Reports.findByIdAndDelete(id);
     res.redirect('/reports');
 }));

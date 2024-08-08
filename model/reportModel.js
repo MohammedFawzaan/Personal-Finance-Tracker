@@ -26,6 +26,9 @@ const reportsSchema = new Schema({
             ref: require('./expensesModel')
         }
     ],
+    currentBalance: {
+        type: Number
+    },
     createdAt :{
         type: Date,
         default: Date.now()
