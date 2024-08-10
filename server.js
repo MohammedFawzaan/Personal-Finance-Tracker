@@ -69,13 +69,11 @@ app.use(sessionOptions);
 // connect-flash middleware
 app.use(flash());
 
-const user = require('./model/newUserModel');
-
 // set up req.locals middleware.
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  // res.locals.currentUser = req.user.username;
+  res.locals.currentUser = req.user;
   next();
 });
 
@@ -88,7 +86,7 @@ app.use('/', require('./routes/newUserRoute'));
 // if user enters wrong route enter
 app.all('*', (req, res, next) => {
   next(new ExpressError(404, 'PageNotFound'));
-});-
+});
 
 // error handling middleware it renders error.ejs
 app.use((err, req, res, next) => {
