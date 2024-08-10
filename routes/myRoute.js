@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/home', async(req, res) => {
-    // console.log(req.userAvailable);
     res.render('UI/home.ejs', { user: req.userAvailable });
 });
 

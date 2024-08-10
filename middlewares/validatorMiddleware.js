@@ -13,13 +13,9 @@ const validateToken = asyncHandler(async (req, res, next) => {
     }
 
     if (token) {
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET || "fawzaan123");
-            req.userAvailable = decoded.userAvailable;
-            next();
-        } catch (err) {
-            res.status(401).json({ message: "Invalid token" });
-        }
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        req.userAvailable = decoded.userAvailable;
+        next();
     } else {
         req.flash("error", "Please log-in to access");
         res.redirect('/login');

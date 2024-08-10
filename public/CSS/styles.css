@@ -2,8 +2,7 @@ body {
     font-family: Arial, sans-serif;
     /* Prevent horizontal overflow */
     overflow-x: hidden;
-    /* background: linear-gradient(135deg, #00C9FF, #92FE9D); */
-    /* background-color: rgb(195, 246, 246); */
+    background: linear-gradient(135deg, rgb(235, 255, 255), rgb(195, 246, 246));
 }
 
 /* For every content */

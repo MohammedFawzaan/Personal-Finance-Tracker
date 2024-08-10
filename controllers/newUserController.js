@@ -27,7 +27,7 @@ const Register = asyncHandler(async (req, res) => {
         email,
         password: hashpassword
     });
-
+    
     await newUser.save();
 
     if (newUser) {
@@ -40,7 +40,7 @@ const Register = asyncHandler(async (req, res) => {
                     id: newUser.id
                 }
             },
-            process.env.JWT_SECRET || "fawzaan123",
+            process.env.JWT_SECRET,
             { expiresIn: "15m" }
         );
         res.cookie('accessToken', accessToken, {
@@ -74,12 +74,12 @@ const Login = asyncHandler(async (req, res) => {
                     id: userAvailable.id
                 }
             }, 
-            process.env.JWT_SECRET || "fawzaan123",
+            process.env.JWT_SECRET,
             { expiresIn: "15m" }
         );
         res.cookie('accessToken', accessToken, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV,
             maxAge: 2 * 365 * 24 * 60 * 60 * 1000 // 2 years
         });
         res.redirect('/home');
@@ -96,7 +96,7 @@ const Current = asyncHandler(async (req, res) => {
 const Logout = (req, res) => {
     res.clearCookie('accessToken', {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production'
+        secure: process.env.NODE_ENV
     });
     req.flash("error", "You are Logged Out");
     res.redirect('/login'); // Redirect to the login page after logout

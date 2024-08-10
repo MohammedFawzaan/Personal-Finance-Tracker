@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 
 // ejs, ejs-mate require
@@ -26,17 +27,32 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.static(path.join(__dirname, "/public/CSS")));
 app.use(express.static(path.join(__dirname, "/public/JS")));
 
+const dbUrl = process.env.ATLASDB_URL;
+
 // mongoose Connection
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/FinanceApp');
-    console.log("db connected");
+  await mongoose.connect(dbUrl);
 }
 
-// specified session Options
+// to store session info in mongoAtlas db using connect-mongo(MongoStore)
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret: process.env.SECRET
+  },
+  touchAfter: 24 * 36000
+});
+
+// catch error using store.on()
+store.on("error", () => {
+  console.log("Error in mongo sesion store", err);
+});
+
 const sessionOptions = session({
-  secret: "MySecret",
+  store: store, //store info 
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -53,11 +69,13 @@ app.use(sessionOptions);
 // connect-flash middleware
 app.use(flash());
 
+const user = require('./model/newUserModel');
+
 // set up req.locals middleware.
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.currentUser = req.user;
+  // res.locals.currentUser = req.user.username;
   next();
 });
 
@@ -70,7 +88,7 @@ app.use('/', require('./routes/newUserRoute'));
 // if user enters wrong route enter
 app.all('*', (req, res, next) => {
   next(new ExpressError(404, 'PageNotFound'));
-});
+});-
 
 // error handling middleware it renders error.ejs
 app.use((err, req, res, next) => {
