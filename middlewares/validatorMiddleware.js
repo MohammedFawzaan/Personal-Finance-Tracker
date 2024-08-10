@@ -18,11 +18,17 @@ const validateToken = asyncHandler(async (req, res, next) => {
 
     // if token exists
     if (token) {
-        // verifying token using jwt.verify() with JWT_SECRET;
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        // saving into req as req.userAvailable attribute.
-        req.userAvailable = decoded.userAvailable;
-        next();
+        try {
+            // verifying token using jwt.verify() with JWT_SECRET;
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            // saving into req as req.userAvailable attribute.
+            req.userAvailable = decoded.userAvailable;
+            next();
+        } // if token expires it catches error.
+        catch(err) {
+            req.flash("error", "Please Log-in to access");
+            res.redirect('/login');
+        }
     } else {
         req.flash("error", "Please log-in to access");
         res.redirect('/login');
