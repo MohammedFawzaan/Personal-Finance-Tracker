@@ -5,33 +5,37 @@ const jwt = require('jsonwebtoken');
 const ExpressError = require('../utils/ExpressError');
 require('dotenv').config();
 
+// signup get route.
 const Signup = (req, res) => {
     res.render('UI/signup.ejs');
 };
 
+// signup (Register route)
 const Register = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
     if (!username || !email || !password) {
         throw new ExpressError(400, "Fill all details");
     }
-
+    // finding user from its email.
+    // to check if he is already registered.
     const userAvailable = await User.findOne({ email });
     if (userAvailable) {
         throw new ExpressError(404, "User Already registered");
     }
-
+    // hashpassword using bycryt.hash(password, 10).
     const hashpassword = await bcrypt.hash(password, 10);
 
+    // creating & saving newUser
     const newUser = new User({
         username,
         email,
         password: hashpassword
     });
-    
     await newUser.save();
 
+    // Log in the user directly after successful signup
     if (newUser) {
-        // Log in the user directly after successful signup
+        // creating accesstoken using jwt.sign() with JWT_SECRET.
         const accessToken = jwt.sign(
             {
                 userAvailable: {
@@ -43,6 +47,7 @@ const Register = asyncHandler(async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "15m" }
         );
+        // storing data into web-cookie
         res.cookie('accessToken', accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
@@ -54,18 +59,22 @@ const Register = asyncHandler(async (req, res) => {
     }
 });
 
+// login get route
 const LoginGet = (req, res) => {
     res.render("UI/login.ejs");
 };
 
+// login post route
 const Login = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
         throw new ExpressError(400, 'Email or password incorrect');
     }
+    // finding user
     const userAvailable = await User.findOne({ email });
-
+    // comparing user password and password which user entered on site.
     if (userAvailable && (await bcrypt.compare(password, userAvailable.password))) {
+        // creating accesstoken using jwt.sign() with JWT_SECRET.
         const accessToken = jwt.sign(
             {
                 userAvailable: {
@@ -77,6 +86,7 @@ const Login = asyncHandler(async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "15m" }
         );
+        // Saving data in web-cookie in form of accessToken, which has generated.
         res.cookie('accessToken', accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV,
@@ -89,11 +99,14 @@ const Login = asyncHandler(async (req, res) => {
     }
 });
 
+// current user get route
 const Current = asyncHandler(async (req, res) => {
     res.json(req.userAvailable);
 });
 
+// logout get route
 const Logout = (req, res) => {
+    // clearing cookie, so that accessToken expires
     res.clearCookie('accessToken', {
         httpOnly: true,
         secure: process.env.NODE_ENV
