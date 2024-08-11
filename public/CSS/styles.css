@@ -605,10 +605,6 @@ h1 {
     font-size: x-large;
 }
 
-.expense-item:hover {
-    transform: translateY(-5px);
-}
-
 .expense-amount {
     font-size: 18px;
     font-weight: bold;
@@ -636,11 +632,10 @@ h1 {
     .btn-delete-expense {
         padding: 0.8rem;
         border-radius: 50%;
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 1.2rem;
+        width: 2rem;
+        height: 2rem;
         text-align: center;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.3rem;
         color: transparent; /* Hide the original text */
     }
 
